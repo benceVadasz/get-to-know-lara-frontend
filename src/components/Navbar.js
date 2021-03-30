@@ -34,53 +34,58 @@ export default function Navbar() {
     }));
 
     const classes = useStyles();
-    const [loading, setLoading] = useState("");
+    const [loading, setLoading] = useState(false);
     const isLoggedIn = sessionStorage.getItem("email") != null;
     let navRow;
-    {
-        (!isLoggedIn) ?
-            navRow = (
-                <div>
+    const handleLogout = (e) => {
+        setLoading(true);
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("token");
+        setLoading(false);
+    };
+
+    (!isLoggedIn) ?
+        navRow = (
+            <div>
+                {" "}
+                <Button component={Link} to="/login" color="inherit">
                     {" "}
-                    <Button component={Link} to="/login" color="inherit">
-                        {" "}
-                        Login{" "}
-                    </Button>
-                    <Button component={Link} to="/register" color="inherit">
-                        Register
-                    </Button>
-                </div>
-            )
-            :
-            navRow = (
-                <div>
-                    <IconButton
-                        component={Link}
-                        to="/mail/compose"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        color="inherit"
-                    >
-                        <SendIcon/>
-                    </IconButton>
-                    <Button component={Link} to="/mail/inbox" color="inherit">
-                        Inbox
-                    </Button>
-                    <Button component={Link} to="/mail/sent" color="inherit">
-                        Sent
-                    </Button>
-                    <Button
-                        component={Link}
-                        to=""
-                        onClick={() => handleLogout()}
-                        color="inherit"
-                    >
-                        Logout
-                    </Button>
-                </div>
-            );
-    }
+                    Login{" "}
+                </Button>
+                <Button component={Link} to="/register" color="inherit">
+                    Register
+                </Button>
+            </div>
+        )
+        :
+        navRow = (
+            <div>
+                <IconButton
+                    component={Link}
+                    to="/mail/compose"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    color="inherit"
+                >
+                    <SendIcon/>
+                </IconButton>
+                <Button component={Link} to="/mail/inbox" color="inherit">
+                    Inbox
+                </Button>
+                <Button component={Link} to="/mail/sent" color="inherit">
+                    Sent
+                </Button>
+                <Button
+                    component={Link}
+                    to=""
+                    onClick={() => handleLogout()}
+                    color="inherit"
+                >
+                    Logout
+                </Button>
+            </div>
+        );
 
     if (loading)
         return (

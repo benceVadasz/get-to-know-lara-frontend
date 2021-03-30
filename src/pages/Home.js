@@ -1,4 +1,3 @@
-import './App.css';
 import Inbox from "../components/Inbox";
 import Welcome from "./Welcome";
 
