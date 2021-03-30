@@ -4,7 +4,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import SendIcon from "@material-ui/icons/Send";
 import IconButton from "@material-ui/core/IconButton";
 import Spinner from "react-spinner-material";
@@ -34,6 +33,8 @@ export default function Navbar() {
         },
     }));
 
+    const classes = useStyles();
+    const [loading, setLoading] = useState("");
     const isLoggedIn = sessionStorage.getItem("email") != null;
     let navRow;
     {
@@ -80,6 +81,18 @@ export default function Navbar() {
                 </div>
             );
     }
+
+    if (loading)
+        return (
+            <div className={classes.load}>
+                <Spinner
+                    size={120}
+                    spinnerColor={"#333"}
+                    spinnerWidth={2}
+                    visible={true}
+                />
+            </div>
+        );
 
     return (
         <div className={classes.root}>
