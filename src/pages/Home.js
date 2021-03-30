@@ -1,5 +1,6 @@
 import './App.css';
-import {Route, BrowserRouter as Router, Link} from "react-router-dom";
+import Inbox from "../components/Inbox";
+import Welcome from "./Welcome";
 
 function Home() {
     const isLoggedIn = sessionStorage.getItem('token') != null;
