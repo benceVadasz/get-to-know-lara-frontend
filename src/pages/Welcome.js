@@ -4,18 +4,24 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import Image from '../assets/bg.png';
 
 function Welcome() {
     const useStyles = makeStyles((theme) => ({
         root: {
             flexGrow: 1,
         },
+        paperContainer : {
+            background: 'url(../assets/bg.png) no-repeat center center fixed',
+        },
         paper: {
+            background: 'transparent',
+            boxShadow: 'none',
             padding: theme.spacing(2),
             margin: "auto",
-            width: "100%",
-            minHeight: "90vh",
-            background: "#FFFFFF",
+            // width: "100%",
+            // minHeight: "90vh",
+            // background: "#FFFFFF",
             borderBottom: "none",
         },
         image: {
@@ -50,28 +56,11 @@ function Welcome() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <CssBaseline/>
-            <Paper className={classes.paper} width="15%">
-                <Grid container spacing={2}>
-                    <Grid item xs={12} sm container>
-                        <Grid item xs container direction="column" spacing={2}>
-                            <Grid justify="flex-start" className={classes.welcomeBlock} item xs spacing={3}>
-                                <Typography className={classes.welcomeWord} gutterBottom variant="h3">
-                                    Welcome to <span className={classes.trait}>Lara!</span>
-                                </Typography>
+        <div className={classes.paperContainer}>
+            <div className={classes.root}>
+                <CssBaseline/>
 
-                            </Grid>
-                            <Grid item>
-                                <Typography
-                                    variant="body2"
-                                    style={{cursor: "pointer"}}
-                                />
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Paper>
+            </div>
         </div>
     );
 }
