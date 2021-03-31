@@ -14,7 +14,6 @@ export default function Navbar() {
             position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"
         },
         root: {
-            background: "#F6F6F6",
             flexGrow: 1,
             marginBottom: "5px",
         },
@@ -25,7 +24,7 @@ export default function Navbar() {
             flexGrow: 1,
         },
         navbarStyle: {
-            background: "#003366",
+            background: 'transparent'
         },
         img: {
             width: 150,
