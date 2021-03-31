@@ -18,7 +18,7 @@ function Register() {
         headerStyle: {margin: 0},
         avatarStyle: {backgroundColor: "#090F4B", marginBottom: 10},
         button: {backgroundColor: "#090F4B", color: "white", '&:hover': {background: "#D31D00"}},
-        load: {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"},
+        load: {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)", color: "#D31D00"},
         paperStyle: {padding: "30px 20px", height: 480, width: 500, margin: "70px auto", backgroundColor: "rgba(255, 255, 255, 0.2)",},
         formStyle: {height: 350, display: "flex", flexFlow: "column wrap", justifyContent: "space-between"},
     }))
@@ -64,6 +64,7 @@ function Register() {
     }
 
     const submit = (e) => {
+        e.preventDefault();
         if (isValid()) {
 
             if (password !== confirmPassword) alert("Passwords do not match");
@@ -96,7 +97,7 @@ function Register() {
                     spinnerColor={"#333"}
                     spinnerWidth={2}
                     visible={true}
-                    color={'black'}/>
+                    color={'#D31D00'}/>
             </div>
         );
 
@@ -134,6 +135,8 @@ function Register() {
                             label="Password"
                             type="password"
                             placeholder="Enter your password"
+                            error={passwordError !== ""}
+                            helperText={passwordError === "" ? '' : passwordError}
                         />
                         <TextField
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -141,6 +144,8 @@ function Register() {
                             label="Confirm Password"
                             type="password"
                             placeholder="Confirm your password"
+                            error={confirmPasswordError !== ""}
+                            helperText={confirmPasswordError === "" ? '' : confirmPasswordError}
                         />
                         <Button type="submit" variant="contained" className={classes.button}>
                             Sign up

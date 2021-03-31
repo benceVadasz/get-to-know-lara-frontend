@@ -50,8 +50,8 @@ function Welcome() {
             fontSize: 15,
         },
         joinBtn: {
-            marginTop: 70,
-            marginLeft: 20,
+            marginTop: 55,
+            marginLeft: 25,
             width: 200,
             fontWeight: "bolder",
         },
