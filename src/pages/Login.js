@@ -11,26 +11,19 @@ import {
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import {BASE_URL} from "../constants";
 import Spinner from "react-spinner-material";
+import {makeStyles} from "@material-ui/core/styles";
 
 function Login() {
-
-    const paperStyle = {
-        padding: "30px 20px",
-        height: 480,
-        width: 500,
-        margin: "70px auto",
-    };
-    const formStyle = {
-        height: 350,
-        display: "flex",
-        flexFlow: "column wrap",
-        justifyContent: "space-between",
-    };
-
-    const headerStyle = {margin: 0};
-    const avatarStyle = {backgroundColor: "#090F4B", marginBottom: 10};
-    const button = {backgroundColor: "#090F4B", color: "white"};
-    const load = {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}
+    const useStyles = makeStyles((theme) => ({
+        paperStyle: {padding: "30px 20px", height: 350, width: 500, margin: "70px auto", color: 'white', backgroundColor: "rgba(255, 255, 255, 0.2)",},
+        formStyle: {height: 250, display: "flex", flexFlow: "column wrap", justifyContent: "space-between",},
+        nameField: {marginTop: 25,},
+        headerStyle: {margin: 0},
+        avatarStyle: {backgroundColor: "#090F4B", marginBottom: 10},
+        button: {backgroundColor: "#090F4B", color: "white"},
+        load: {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}
+    }))
+    const classes = useStyles();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -59,7 +52,7 @@ function Login() {
 
     if (loading)
         return (
-            <div style={load}>
+            <div className={classes.load}>
                 <Spinner
                     size={120}
                     spinnerColor={"#333"}
@@ -72,22 +65,21 @@ function Login() {
     return (
         <div>
             <Grid>
-                <Paper elevation={20} style={paperStyle}>
+                <Paper elevation={20} className={classes.paperStyle}>
                     <Grid align="center">
-                        <Avatar style={avatarStyle}>
+                        <Avatar className={classes.avatarStyle}>
                             <AddCircleOutlineOutlinedIcon/>
                         </Avatar>
-                        <h2 style={headerStyle}>Sign Up</h2>
-                        <Typography variant="caption" gutterBottom>
-                            Please fill this form to create an account !
-                        </Typography>
+                        <h2 className={classes.headerStyle}>Sign Up</h2>
                     </Grid>
-                    <form style={formStyle} onSubmit={submit}>
+                    <form className={classes.formStyle} onSubmit={submit}>
                         <TextField
+                            className={classes.nameField}
                             onChange={(e) => setEmail(e.target.value)}
                             fullWidth
                             label="Email"
                             placeholder="Enter your email"
+                            color={"white"}
                         />
                         <TextField
                             onChange={(e) => setPassword(e.target.value)}
@@ -95,8 +87,9 @@ function Login() {
                             label="Password"
                             type="password"
                             placeholder="Enter your password"
+                            color={"white"}
                         />
-                        <Button type="submit" variant="contained" style={button}>
+                        <Button type="submit" variant="contained" className={classes.button}>
                             Log in
                         </Button>
                     </form>
