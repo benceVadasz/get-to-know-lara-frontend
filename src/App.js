@@ -6,6 +6,7 @@ import Inbox from "./components/Inbox";
 import Welcome from "./pages/Welcome";
 import Register from "./pages/Registration";
 import Login from "./pages/Login";
+import Compose from "./pages/Compose";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Route exact path="/welcome" children={<Welcome />} />
                 <Route exact path="/register" children={<Register />} />
                 <Route exact path="/login" children={<Login />} />
+                <Route exact path="/compose" children={<Compose />} />
             </Router>
         </div>
     );

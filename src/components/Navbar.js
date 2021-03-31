@@ -34,7 +34,7 @@ export default function Navbar() {
 
     const classes = useStyles();
     const [loading, setLoading] = useState(false);
-    const isLoggedIn = sessionStorage.getItem("email") != null;
+    const isLoggedIn = sessionStorage.getItem("token") != null;
     let navRow;
     const handleLogout = (e) => {
         setLoading(true);
@@ -61,7 +61,7 @@ export default function Navbar() {
             <div>
                 <IconButton
                     component={Link}
-                    to="/mail/compose"
+                    to="/compose"
                     aria-label="account of current user"
                     aria-controls="menu-appbar"
                     aria-haspopup="true"
