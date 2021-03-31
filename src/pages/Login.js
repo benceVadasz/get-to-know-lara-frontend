@@ -79,7 +79,6 @@ function Login() {
                             fullWidth
                             label="Email"
                             placeholder="Enter your email"
-                            color={"white"}
                         />
                         <TextField
                             onChange={(e) => setPassword(e.target.value)}
@@ -87,7 +86,6 @@ function Login() {
                             label="Password"
                             type="password"
                             placeholder="Enter your password"
-                            color={"white"}
                         />
                         <Button type="submit" variant="contained" className={classes.button}>
                             Log in
