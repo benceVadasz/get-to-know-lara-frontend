@@ -5,43 +5,31 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Image from '../assets/bg.png';
+import {Avatar, Button, Card, CardContent, TextField} from "@material-ui/core";
+import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
+import {Link} from "react-router-dom";
 
 function Welcome() {
     const useStyles = makeStyles((theme) => ({
+
         root: {
             flexGrow: 1,
+            backgroundColor: "rgba(255, 255, 255, 0)",
+            boxShadow: "none"
         },
-        paperContainer : {
-            background: 'url(../assets/bg.png) no-repeat center center fixed',
-        },
-        paper: {
-            background: 'transparent',
-            boxShadow: 'none',
-            padding: theme.spacing(2),
-            margin: "auto",
-            // width: "100%",
-            // minHeight: "90vh",
-            // background: "#FFFFFF",
-            borderBottom: "none",
-        },
-        image: {
-            width: 128,
-            height: 128,
-        },
-        img: {
-            marginTop: 90,
-            display: "block",
-            marginRight: 20,
-            width: 800,
+        paperContainer: {
+            border: 'none'
         },
         welcomeBlock: {
+            width: 300,
             marginTop: "190px",
-            marginLeft: 0,
-            display: 'flex'
+            marginLeft: 500,
+            display: 'flex',
+            border: 'none'
 
         },
         welcomeWord: {
-            marginLeft: 50,
+            marginLeft: 650,
             fontFamily: 'Fugaz One, cursive'
         },
         trait: {
@@ -51,16 +39,56 @@ function Welcome() {
             fontFamily: 'Lato, sans-serif',
             fontSize: 16
         },
+        title: {
+            marginTop: 55,
+            fontFamily: 'Sarabun, sans-serif',
+            width: 500,
+            color: '#f8f8ff'
+        },
+        description: {
+            fontFamily: 'Lato, sans-serif',
+            fontSize: 15,
+        },
+        joinBtn: {
+            marginTop: 70,
+            marginLeft: 20,
+            width: 200,
+            fontWeight: "bolder",
+        },
+        box:{
+            display: 'flex',
+            flexFlow: 'column',
+            marginTop: 88,
+            marginLeft: 666,
+        }
     }));
 
     const classes = useStyles();
 
     return (
         <div className={classes.paperContainer}>
-            <div className={classes.root}>
-                <CssBaseline/>
-
-            </div>
+            <Card className={classes.root}>
+                <CardContent className={classes.box}>
+                    <Typography
+                        className={classes.title}
+                        align="center"
+                        gutterBottom
+                        variant="h2"
+                        component="h3"
+                    >
+                        Welcome to Lara!
+                    </Typography>
+                    <Button
+                        color="primary"
+                        variant="contained"
+                        className={classes.joinBtn}
+                        component={Link}
+                        to="/register"
+                    >
+                        Sign up!
+                    </Button>
+                </CardContent>
+            </Card>
         </div>
     );
 }
