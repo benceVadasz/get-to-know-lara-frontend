@@ -1,12 +1,7 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Image from '../assets/bg.png';
-import {Avatar, Button, Card, CardContent, TextField} from "@material-ui/core";
-import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
+import { Button, Card, CardContent} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 function Welcome() {

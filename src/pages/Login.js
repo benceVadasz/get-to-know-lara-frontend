@@ -4,7 +4,6 @@ import {
     Grid,
     Paper,
     Avatar,
-    Typography,
     TextField,
     Button,
 } from "@material-ui/core";
@@ -42,6 +41,7 @@ function Login() {
             })
             .then((response) => {
                 setLoading(false);
+                sessionStorage.setItem("token", response.data.token);
                 window.location.href = "/";
             })
             .catch(function (error) {
