@@ -6,12 +6,8 @@ function Inbox() {
 
 
     return (
-        <div className="welcome">
-            <Paper className={""} width="15%">
-                <Grid container spacing={2}>
-
-                </Grid>
-            </Paper>
+        <div className="inbox">
+            <p>inbox</p>
         </div>
     );
 }
