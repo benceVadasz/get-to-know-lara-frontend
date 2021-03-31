@@ -71,7 +71,7 @@ function Register() {
             setLoading(true);
             e.preventDefault();
             axios
-                .post(`${BASE_URL}/registration`, {
+                .post(`${BASE_URL}/register`, {
                     headers: {
                         "Content-Type": "application/json",
                     },
