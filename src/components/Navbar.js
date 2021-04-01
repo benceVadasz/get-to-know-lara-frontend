@@ -15,7 +15,8 @@ export default function Navbar() {
         },
         root: {
             flexGrow: 1,
-            marginBottom: "5px",
+            marginBottom: 5,
+            marginRight: 20,
         },
         menuButton: {
             marginRight: theme.spacing(2),
@@ -69,7 +70,7 @@ export default function Navbar() {
                 >
                     <SendIcon/>
                 </IconButton>
-                <Button component={Link} to="/mail/inbox" color="inherit">
+                <Button component={Link} to="/inbox" color="inherit">
                     Inbox
                 </Button>
                 <Button component={Link} to="/mail/sent" color="inherit">
