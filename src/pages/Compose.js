@@ -31,8 +31,9 @@ function Compose() {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState("");
 
+
     const submit = (e) => {
-        if (subject.length < 255) {
+        if (message.length > 255) {
             alert("message cannot be longer than 255 characters");
         } else {
             const token = sessionStorage.getItem("token");
