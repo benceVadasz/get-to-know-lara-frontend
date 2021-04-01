@@ -27,6 +27,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        backgroundColor: "rgba(255, 255, 255, 0)",
     },
 }));
 
