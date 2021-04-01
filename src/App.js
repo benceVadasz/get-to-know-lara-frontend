@@ -2,7 +2,7 @@ import './App.css';
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import {Route, BrowserRouter as Router} from "react-router-dom";
-import Inbox from "./components/Inbox";
+import Inbox from "./pages/Inbox";
 import Welcome from "./pages/Welcome";
 import Register from "./pages/Registration";
 import Login from "./pages/Login";
@@ -14,7 +14,7 @@ function App() {
         <div className="App">
 
             <Router>
-                <Navbar/>
+                {/*<Navbar/>*/}
                 <Route exact path="/" children={<Home />} />
                 <Route exact path="/inbox" children={<Inbox />} />
                 <Route exact path="/welcome" children={<Welcome />} />
