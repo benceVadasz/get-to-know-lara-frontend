@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import {makeStyles} from "@material-ui/core/styles";
 import axios from 'axios';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
@@ -36,7 +36,32 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         width: drawerWidth,
     },
+    table: {
+        backgroundColor: 'transparent',
+        color: "black",
+    },
+    tableHead: {
+        color: "white",
+        border: '1px solid gray',
+    }
 }));
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+        backgroundColor: '#151868',
+        color: theme.palette.common.white,
+    },
+    body: {
+        fontSize: 14,
+    },
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
+    root: {
+        '&:nth-of-type(odd)': {
+            backgroundColor: '#f4f5f5',
+        },
+    },
+}))(TableRow);
 
 function InboxHeader() {
     const token = sessionStorage.getItem("token");
@@ -81,35 +106,24 @@ function InboxHeader() {
         <main className={classes.content}>
             <div className={classes.toolbar}/>
             <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="simple table">
+                <Table className={classes.table} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Subject</TableCell>
-                            <TableCell align="right">From</TableCell>
-                            <TableCell align="right">Sent at</TableCell>
+                            <StyledTableCell>Subject</StyledTableCell>
+                            <StyledTableCell align="right">From</StyledTableCell>
+                            <StyledTableCell align="right">Sent at</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {mails.map((mail, i) => (
-                            <TableRow key={mail.id}>
-                                {/*<TableCell className={classes.linkTitle}>*/}
-                                {/*    {!mail.is_read ? (*/}
-                                {/*        <i id="dot" class="fa fa-circle" aria-hidden="true"></i>*/}
-                                {/*    ) : (*/}
-                                {/*        ""*/}
-                                {/*    )}*/}
-                                {/*    <Link*/}
-                                {/*        to={"view/" + mail.mailId}*/}
-                                {/*        // onClick={openMail(mail.id)}*/}
-                                {/*        className={classes.mailLink}*/}
-                                {/*        align="left"*/}
-                                {/*    >*/}
-                                {/*        {mail.subject}*/}
-                                {/*    </Link>*/}
-                                {/*</TableCell>*/}
-                                <TableCell align="right">{mail.name}</TableCell>
-                                <TableCell align="right">{mail.sent}</TableCell>
-                            </TableRow>
+                        {mails.map((row) => (
+                            <StyledTableRow key={row.name}>
+                                <StyledTableCell component="th" scope="row">
+                                    {row.name}
+                                </StyledTableCell>
+                                <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                                <StyledTableCell align="right">{row.fat}</StyledTableCell>
+                                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+                            </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
