@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import axios from 'axios';
-import Spinner from "react-spinner-material";
 import Typography from "@material-ui/core/Typography";
+import {BASE_URL} from '../constants';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -40,18 +40,13 @@ const useStyles = makeStyles((theme) => ({
 function InboxHeader() {
     const token = sessionStorage.getItem("token");
     const classes = useStyles();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
     const [mails, setMails] = useState([]);
-    const baseUrl =
-        "http://localhost:8888/get-to-know-lara/get-to-know-lara-backend/public/api/inbox";
     const [loading, setLoading] = useState(false);
-    const handleDrawerToggle = () => {
-        setMobileOpen(!mobileOpen);
-    };
+
     useEffect(() => {
         setLoading(true);
         axios
-            .get(baseUrl, {
+            .get(`${BASE_URL}/inbox`, {
                 headers: {
                     Authorization: "Bearer " + token,
                 },
@@ -61,6 +56,7 @@ function InboxHeader() {
                 console.log(res.data);
                 setMails(res.data.mail);
             });
+        // eslint-disable-next-line
     }, []);
     if (loading)
         return (

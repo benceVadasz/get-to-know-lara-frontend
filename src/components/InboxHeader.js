@@ -6,6 +6,7 @@ import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Spinner from "react-spinner-material";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -41,6 +42,18 @@ function InboxHeader() {
         sessionStorage.removeItem("token");
         setLoading(false);
     };
+
+    if (loading)
+        return (
+            <div className={classes.load}>
+                <Spinner
+                    size={120}
+                    spinnerColor={"#333"}
+                    spinnerWidth={2}
+                    visible={true}
+                    color={'#D31D00'}/>
+            </div>
+        );
     return (
         <AppBar position="fixed" className={classes.appBar}>
             <Toolbar>

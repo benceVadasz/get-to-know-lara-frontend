@@ -100,9 +100,6 @@ export default function Navbar() {
         <div className={classes.root}>
             <AppBar className={classes.navbarStyle} position="static">
                 <Toolbar className={classes.toolbar}>
-                    <Button component={Link} to="/" color="inherit">
-                        Home
-                    </Button>
                     <div>{navRow}</div>
                 </Toolbar>
             </AppBar>
