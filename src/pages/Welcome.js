@@ -3,6 +3,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Button, Card, CardContent} from "@material-ui/core";
 import {Link} from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Welcome() {
     const useStyles = makeStyles((theme) => ({
@@ -62,6 +63,7 @@ function Welcome() {
 
     return (
         <div className={classes.paperContainer}>
+            <Navbar/>
             <Card className={classes.root}>
                 <CardContent className={classes.box}>
                     <Typography

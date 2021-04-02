@@ -52,9 +52,6 @@ export default function Navbar() {
                     {" "}
                     Login{" "}
                 </Button>
-                <Button component={Link} to="/register" color="inherit">
-                    Register
-                </Button>
             </div>
         )
         :
