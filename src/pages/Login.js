@@ -69,7 +69,7 @@ function Login() {
                         <Avatar className={classes.avatarStyle}>
                             <AddCircleOutlineOutlinedIcon/>
                         </Avatar>
-                        <h2 className={classes.headerStyle}>Sign Up</h2>
+                        <h2 className={classes.headerStyle}>Log in</h2>
                     </Grid>
                     <form className={classes.formStyle} onSubmit={submit}>
                         <TextField
