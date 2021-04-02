@@ -42,7 +42,10 @@ const useStyles = makeStyles((theme) => ({
     },
     tableHead: {
         color: "white",
-        border: '1px solid gray',
+        backgroundColor: '#151868',
+    },
+    last: {
+        marginRight: 50
     }
 }));
 const StyledTableCell = withStyles((theme) => ({
@@ -107,11 +110,13 @@ function InboxHeader() {
             <div className={classes.toolbar}/>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="customized table">
-                    <TableHead>
-                        <TableRow>
-                            <StyledTableCell>Subject</StyledTableCell>
-                            <StyledTableCell align="right">From</StyledTableCell>
-                            <StyledTableCell align="right">Sent at</StyledTableCell>
+                    <TableHead className={classes.tableHead}>
+                        <TableRow className={classes.tableHead}>
+                            <StyledTableCell c>Dessert (100g serving)</StyledTableCell>
+                            <StyledTableCell align="right">Calories</StyledTableCell>
+                            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
+                            <StyledTableCell className={classes.last}  align="right">Carbs&nbsp;(g)</StyledTableCell>
+                            {/*<StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>*/}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -123,6 +128,7 @@ function InboxHeader() {
                                 <StyledTableCell align="right">{row.calories}</StyledTableCell>
                                 <StyledTableCell align="right">{row.fat}</StyledTableCell>
                                 <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+                                <StyledTableCell align="right">{row.protein}</StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
