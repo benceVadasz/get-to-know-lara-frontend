@@ -1,10 +1,11 @@
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
+import {Link} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -21,13 +22,24 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+    logoutButton: {
+        color: '#D31D00',
+        marginLeft: 'auto',
+    },
 }));
 
 function InboxHeader() {
     const classes = useStyles();
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
+    };
+    const handleLogout = (e) => {
+        setLoading(true);
+        sessionStorage.removeItem("email");
+        sessionStorage.removeItem("token");
+        setLoading(false);
     };
     return (
         <AppBar position="fixed" className={classes.appBar}>
@@ -41,9 +53,15 @@ function InboxHeader() {
                 >
                     <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap>
-                    Responsive drawer
-                </Typography>
+                <Button
+                    className={classes.logoutButton}
+                    component={Link}
+                    to=""
+                    onClick={() => handleLogout()}
+                    color="inherit"
+                >
+                    Logout
+                </Button>
             </Toolbar>
         </AppBar>
     );
