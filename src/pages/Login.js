@@ -19,7 +19,7 @@ function Login() {
         nameField: {marginTop: 25,},
         headerStyle: {margin: 0},
         avatarStyle: {backgroundColor: "#090F4B", marginBottom: 10},
-        button: {backgroundColor: "#090F4B", color: "white"},
+        button: {backgroundColor: "#090F4B", color: "white", '&:hover': {background: "#D31D00"}},
         load: {position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}
     }))
     const classes = useStyles();
@@ -58,10 +58,9 @@ function Login() {
                     spinnerColor={"#333"}
                     spinnerWidth={2}
                     visible={true}
-                    color={'black'}/>
+                    color={'#D31D00'}/>
             </div>
         );
-
     return (
         <div>
             <Grid>
