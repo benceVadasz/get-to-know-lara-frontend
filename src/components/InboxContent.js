@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
-import {Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -135,7 +136,7 @@ function InboxHeader() {
                             <StyledTableRow key={mail.name}>
                                 <StyledTableCell component="th" scope="row">
                                     <Link
-                                        to={"view/" + mail.mailId}
+                                        to={"view/" + mail.id}
                                         className={classes.mailLink}
                                         align="left"
                                     >
