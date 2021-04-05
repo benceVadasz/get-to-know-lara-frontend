@@ -33,8 +33,8 @@ function Compose() {
         left: "50%",
         transform: "translate(-50%, -50%)",
     };
-    const messageStyle = { marginBottom: 0};
-    const button = { color: "white", backgroundColor: "#090F4B", width: 70, borderRadius: 5, '&:hover': {background: "#D31D00"}};
+    const messageStyle = { marginBottom: 10};
+    const button = { alignSelf: 'flex-end', color: "white", backgroundColor: "#090F4B", width: 70, borderRadius: 5, '&:hover': {background: "#D31D00"}};
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
@@ -86,17 +86,7 @@ function Compose() {
             <Grid>
                 <Paper elevation={20} style={paperStyle}>
                     <form id="form" style={formStyle} onSubmit={submit}>
-                        <IconButton
-                            style={button}
-                            component={Link}
-                            to="/mail/compose"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            color="inherit"
-                        >
-                            <SendIcon />
-                        </IconButton>
+
                         <TextField
                             fullWidth
                             onChange={(e) => setEmail(e.target.value)}
@@ -123,6 +113,17 @@ function Compose() {
                             multiline
                             rows={5}
                         />
+                        <IconButton
+                            style={button}
+                            component={Link}
+                            to="/mail/compose"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            color="inherit"
+                        >
+                            <SendIcon />
+                        </IconButton>
                     </form>
                 </Paper>
             </Grid>
