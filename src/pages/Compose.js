@@ -15,7 +15,7 @@ import SendIcon from "@material-ui/icons/Send";
 
 function Compose() {
     const paperStyle = {
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
+        backgroundColor: "#f4f5f5",
         padding: "30px 20px",
         height: 345,
         width: 920,
@@ -113,8 +113,9 @@ function Compose() {
                             multiline
                             rows={5}
                         />
-                        <IconButton
+                        <Button
                             style={button}
+                            type="submit"
                             component={Link}
                             to="/mail/compose"
                             aria-label="account of current user"
@@ -123,7 +124,7 @@ function Compose() {
                             color="inherit"
                         >
                             <SendIcon />
-                        </IconButton>
+                        </Button>
                     </form>
                 </Paper>
             </Grid>
