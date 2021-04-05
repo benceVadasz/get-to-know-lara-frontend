@@ -41,6 +41,7 @@ function Compose() {
     const [loading, setLoading] = useState(false);
 
     const submit = (e) => {
+        console.log('submit')
         if (message.length > 255) {
             alert("message cannot be longer than 255 characters");
         } else {
@@ -75,6 +76,7 @@ function Compose() {
                     spinnerColor={"#333"}
                     spinnerWidth={2}
                     visible={true}
+                    color={'#D31D00'}
                 />
             </div>
         );
@@ -116,8 +118,6 @@ function Compose() {
                         <Button
                             style={button}
                             type="submit"
-                            component={Link}
-                            to="/mail/compose"
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
