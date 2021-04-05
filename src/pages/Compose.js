@@ -3,27 +3,26 @@ import {
     Grid,
     Paper,
     TextField,
-    Button,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
-    DialogActions
+    Button, Link,
 } from "@material-ui/core";
 import axios from "axios";
 import Spinner from "react-spinner-material";
 import {BASE_URL} from "../constants";
+import InboxHeader from "../components/InboxHeader";
+import InboxSideBar from "../components/InboxSideBar";
+import IconButton from "@material-ui/core/IconButton";
+import SendIcon from "@material-ui/icons/Send";
 
 function Compose() {
     const paperStyle = {
         backgroundColor: "rgba(255, 255, 255, 0.2)",
         padding: "30px 20px",
-        height: 280,
-        width: 500,
+        height: 345,
+        width: 920,
         margin: "70px auto",
     };
     const formStyle = {
-        height: 260,
+        height: 290,
         display: "flex",
         flexFlow: "column wrap",
         justifyContent: "space-between",
@@ -34,13 +33,12 @@ function Compose() {
         left: "50%",
         transform: "translate(-50%, -50%)",
     };
-    const messageStyle = { marginBottom: 20 };
-    const button = { color: "white", backgroundColor: "#090F4B"};
+    const messageStyle = { marginBottom: 0};
+    const button = { color: "white", backgroundColor: "#090F4B", width: 70, borderRadius: 5, '&:hover': {background: "#D31D00"}};
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const [open, setOpen] = useState(false);
 
     const submit = (e) => {
         if (message.length > 255) {
@@ -64,14 +62,9 @@ function Compose() {
                 })
                 .catch(function (error) {
                     alert('Email not found')
-                    setOpen(true)
                     window.location.href = "/compose";
                 });
         }
-    };
-
-    const handleClose = () => {
-        setOpen(false);
     };
 
     if (loading)
@@ -88,30 +81,22 @@ function Compose() {
 
     return (
         <div>
-            <div>
-                <Dialog
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="draggable-dialog-title"
-                >
-                    <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-                        Email not found
-                    </DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            Please check if you entered the email correctly
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button autoFocus onClick={handleClose} color="primary">
-                            Ok
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </div>
+            <InboxHeader/>
+            <InboxSideBar />
             <Grid>
                 <Paper elevation={20} style={paperStyle}>
                     <form id="form" style={formStyle} onSubmit={submit}>
+                        <IconButton
+                            style={button}
+                            component={Link}
+                            to="/mail/compose"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            color="inherit"
+                        >
+                            <SendIcon />
+                        </IconButton>
                         <TextField
                             fullWidth
                             onChange={(e) => setEmail(e.target.value)}
@@ -136,11 +121,8 @@ function Compose() {
                             name="Message"
                             placeholder="Message..."
                             multiline
-                            rows={4}
+                            rows={5}
                         />
-                        <Button type="submit" variant="contained" style={button}>
-                            Send
-                        </Button>
                     </form>
                 </Paper>
             </Grid>
