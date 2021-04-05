@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import { Grid, Paper, TextField, Button } from "@material-ui/core";
+import {
+    Grid,
+    Paper,
+    TextField,
+    Button,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions
+} from "@material-ui/core";
 import axios from "axios";
 import Spinner from "react-spinner-material";
 import {BASE_URL} from "../constants";
@@ -29,8 +39,8 @@ function Compose() {
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState("");
-
+    const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const submit = (e) => {
         if (message.length > 255) {
@@ -52,8 +62,16 @@ function Compose() {
                     console.log(response);
                     window.location.href = "/";
                 })
-                .catch(function (error) {});
+                .catch(function (error) {
+                    alert('Email not found')
+                    setOpen(true)
+                    window.location.href = "/compose";
+                });
         }
+    };
+
+    const handleClose = () => {
+        setOpen(false);
     };
 
     if (loading)
@@ -70,6 +88,27 @@ function Compose() {
 
     return (
         <div>
+            <div>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="draggable-dialog-title"
+                >
+                    <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
+                        Email not found
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Please check if you entered the email correctly
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button autoFocus onClick={handleClose} color="primary">
+                            Ok
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </div>
             <Grid>
                 <Paper elevation={20} style={paperStyle}>
                     <form id="form" style={formStyle} onSubmit={submit}>
@@ -96,6 +135,8 @@ function Compose() {
                             type="text"
                             name="Message"
                             placeholder="Message..."
+                            multiline
+                            rows={4}
                         />
                         <Button type="submit" variant="contained" style={button}>
                             Send
