@@ -3,7 +3,7 @@ import axios from 'axios';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -37,20 +37,26 @@ const useStyles = makeStyles((theme) => ({
         width: drawerWidth,
     },
     table: {
-        backgroundColor: 'transparent',
+        backgroundColor: "#151969",
         color: "black",
+        width: 1020,
     },
     tableHead: {
         color: "white",
-        backgroundColor: '#151868',
+        backgroundColor: '#151868 !important',
     },
     last: {
         marginRight: 50
-    }
+    },
+    mailLink: {
+        cursor: 'pointer',
+        textDecoration: "none",
+        border: "none",
+    },
 }));
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: '#151868',
+        backgroundColor: '#151868 !important',
         color: theme.palette.common.white,
     },
     body: {
@@ -61,6 +67,9 @@ const StyledTableCell = withStyles((theme) => ({
 const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
+            backgroundColor: 'white',
+        },
+        '&:nth-of-type(even)': {
             backgroundColor: '#f4f5f5',
         },
     },
@@ -83,8 +92,11 @@ function InboxHeader() {
             .then((res) => {
                 setLoading(false);
                 console.log(res.data);
-                // setMails(res.data.mail);
+                setMails(res.data.mail);
 
+            })
+            .catch((e) => {
+                console.log(e)
             });
         // eslint-disable-next-line
     }, []);
@@ -108,27 +120,31 @@ function InboxHeader() {
     return (
         <main className={classes.content}>
             <div className={classes.toolbar}/>
-            <TableContainer component={Paper}>
-                <Table className={classes.table} aria-label="customized table">
+            <TableContainer className={classes.table} component={Paper}>
+                <Table  aria-label="customized table">
                     <TableHead className={classes.tableHead}>
                         <TableRow className={classes.tableHead}>
-                            <StyledTableCell c>Dessert (100g serving)</StyledTableCell>
-                            <StyledTableCell align="right">Calories</StyledTableCell>
-                            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                            <StyledTableCell className={classes.last}  align="right">Carbs&nbsp;(g)</StyledTableCell>
-                            {/*<StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>*/}
+                            <StyledTableCell c>Subject&nbsp;</StyledTableCell>
+                            <StyledTableCell align="right">From&nbsp;</StyledTableCell>
+                            <StyledTableCell align="right">Sent at&nbsp;</StyledTableCell>
+                            <StyledTableCell className={classes.last}  align="right">Read&nbsp;</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {mails.map((row) => (
-                            <StyledTableRow key={row.name}>
+                        {mails.map((mail) => (
+                            <StyledTableRow key={mail.name}>
                                 <StyledTableCell component="th" scope="row">
-                                    {row.name}
+                                    <Link
+                                        to={"view/" + mail.mailId}
+                                        className={classes.mailLink}
+                                        align="left"
+                                    >
+                                        {mail.subject}
+                                    </Link>
                                 </StyledTableCell>
-                                <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                                <StyledTableCell align="right">{mail.name}</StyledTableCell>
+                                <StyledTableCell align="right">{mail.sent}</StyledTableCell>
+                                <StyledTableCell align="right">{mail.read}</StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
