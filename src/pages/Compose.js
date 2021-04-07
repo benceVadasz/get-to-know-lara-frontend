@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
     Grid,
     Paper,
     TextField,
-    Button, Link,
+    Button, Link, Modal,
 } from "@material-ui/core";
 import axios from "axios";
 import Spinner from "react-spinner-material";
 import {BASE_URL} from "../constants";
 import InboxHeader from "../components/InboxHeader";
 import InboxSideBar from "../components/InboxSideBar";
-import IconButton from "@material-ui/core/IconButton";
 import SendIcon from "@material-ui/icons/Send";
+import DraftModal from "../components/DraftModal";
 
 function Compose() {
     const paperStyle = {
@@ -21,6 +21,14 @@ function Compose() {
         width: 920,
         margin: "70px auto",
     };
+    const buttonWrapper = {
+        marginLeft: 745,
+        display: 'flex',
+        flexFlow: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        width: 150
+    }
     const formStyle = {
         height: 290,
         display: "flex",
@@ -33,19 +41,26 @@ function Compose() {
         left: "50%",
         transform: "translate(-50%, -50%)",
     };
-    const messageStyle = { marginBottom: 10};
-    const button = { alignSelf: 'flex-end', color: "white", backgroundColor: "#090F4B", width: 70, borderRadius: 5, '&:hover': {background: "#D31D00"}};
+    const messageStyle = {marginBottom: 10};
+    const button = {
+        alignSelf: 'flex-end',
+        color: "white",
+        backgroundColor: "#090F4B",
+        width: 70,
+        borderRadius: 5,
+        '&:hover': {background: "#D31D00"}
+    };
+    const token = sessionStorage.getItem("token");
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const submit = (e) => {
-        console.log('submit')
         if (message.length > 255) {
             alert("message cannot be longer than 255 characters");
         } else {
-            const token = sessionStorage.getItem("token");
             setLoading(true);
             e.preventDefault();
             return axios({
@@ -53,8 +68,8 @@ function Compose() {
                 url:
                     `${BASE_URL}/compose`,
 
-                headers: { Authorization: "Bearer " + token },
-                params: { email, subject, message },
+                headers: {Authorization: "Bearer " + token},
+                params: {email, subject, message},
             })
                 .then((response) => {
                     setLoading(false);
@@ -67,6 +82,33 @@ function Compose() {
                 });
         }
     };
+
+    const someFieldHasText = () => {
+        return (email !== "" || subject !== "" || message !== "");
+    }
+
+    const saveDraft = () => {
+        if (someFieldHasText) {
+            setLoading(true);
+            return axios({
+                method: "post",
+                url:
+                    `${BASE_URL}/draft`,
+
+                headers: {Authorization: "Bearer " + token},
+                params: {email, subject, message},
+            })
+                .then((response) => {
+                    setLoading(false);
+                    console.log(response);
+                    window.location.href = "/";
+                })
+                .catch(function (error) {
+                    alert('Could not save draft')
+                    window.location.href = "/draft";
+                });
+        }
+    }
 
     if (loading)
         return (
@@ -84,7 +126,7 @@ function Compose() {
     return (
         <div>
             <InboxHeader/>
-            <InboxSideBar />
+            <InboxSideBar/>
             <Grid>
                 <Paper elevation={20} style={paperStyle}>
                     <form id="form" style={formStyle} onSubmit={submit}>
@@ -115,6 +157,8 @@ function Compose() {
                             multiline
                             rows={5}
                         />
+                        <div style={buttonWrapper}>
+
                         <Button
                             style={button}
                             type="submit"
@@ -123,11 +167,21 @@ function Compose() {
                             aria-haspopup="true"
                             color="inherit"
                         >
-                            <SendIcon />
+                            <SendIcon/>
                         </Button>
+                            <Button
+                                style={button}
+                                aria-haspopup="true"
+                                color="inherit"
+                                onClick={ someFieldHasText() ? () => setIsModalOpen(true): () => window.location.href='/inbox'}
+                            >
+                                Cancel
+                            </Button>
+                        </div>
                     </form>
                 </Paper>
             </Grid>
+            <DraftModal open={isModalOpen} onClose={() => setIsModalOpen(false)} onDraftSave={ saveDraft }/>
         </div>
     );
 }

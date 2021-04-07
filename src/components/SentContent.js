@@ -100,23 +100,23 @@ function SentContent() {
             });
         // eslint-disable-next-line
     }, []);
-    if (loading)
-        return (
-            <main className={classes.content}>
-                <div className={classes.toolbar}/>
-                <div className={classes.load}>
-                    <Typography
-                        className={classes.title}
-                        align="center"
-                        gutterBottom
-                        variant="h4"
-                        component="h3"
-                    >
-                        Your mails are loading...
-                    </Typography>
-                </div>
-            </main>
-        );
+    // if (loading)
+    //     return (
+    //         <main className={classes.content}>
+    //             <div className={classes.toolbar}/>
+    //             <div className={classes.load}>
+    //                 <Typography
+    //                     className={classes.title}
+    //                     align="center"
+    //                     gutterBottom
+    //                     variant="h4"
+    //                     component="h3"
+    //                 >
+    //                     Your mails are loading...
+    //                 </Typography>
+    //             </div>
+    //         </main>
+    //     );
     return (
         <main className={classes.content}>
             <div className={classes.toolbar}/>
@@ -125,7 +125,7 @@ function SentContent() {
                     <TableHead className={classes.tableHead}>
                         <TableRow className={classes.tableHead}>
                             <StyledTableCell c>Subject&nbsp;</StyledTableCell>
-                            <StyledTableCell align="right">From&nbsp;</StyledTableCell>
+                            <StyledTableCell align="right">To&nbsp;</StyledTableCell>
                             <StyledTableCell align="right">Sent at&nbsp;</StyledTableCell>
                             <StyledTableCell className={classes.last}  align="right">Read&nbsp;</StyledTableCell>
                         </TableRow>
