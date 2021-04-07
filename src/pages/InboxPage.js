@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
-import InboxHeader from "./InboxHeader";
-import InboxSideBar from "./InboxSideBar";
-import InboxContent from "./InboxContent";
+import InboxHeader from "../components/InboxHeader";
+import InboxSideBar from "../components/InboxSideBar";
+import InboxContent from "../components/InboxContent";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function Inbox() {
+function InboxPage() {
     const classes = useStyles();
 
     return (
@@ -26,7 +26,7 @@ function Inbox() {
     );
 }
 
-Inbox.propTypes = {
+InboxPage.propTypes = {
     /**
      * Injected by the documentation to work in an iframe.
      * You won't need it on your project.
@@ -34,4 +34,4 @@ Inbox.propTypes = {
     window: PropTypes.func,
 };
 
-export default Inbox;
+export default InboxPage;

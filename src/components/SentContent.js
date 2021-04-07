@@ -76,7 +76,7 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-function InboxContent() {
+function SentContent() {
     const token = sessionStorage.getItem("token");
     const classes = useStyles();
     const [mails, setMails] = useState([]);
@@ -84,7 +84,7 @@ function InboxContent() {
 
     useEffect(() => {
         axios
-            .get(`${BASE_URL}/inbox`, {
+            .get(`${BASE_URL}/sent`, {
                 headers: {
                     Authorization: "Bearer " + token,
                 },
@@ -154,4 +154,4 @@ function InboxContent() {
     );
 }
 
-export default InboxContent;
+export default SentContent;

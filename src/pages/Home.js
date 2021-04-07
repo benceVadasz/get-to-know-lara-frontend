@@ -1,4 +1,4 @@
-import Inbox from "../components/Inbox";
+import InboxPage from "./InboxPage";
 import Welcome from "./Welcome";
 
 function Home() {
@@ -7,7 +7,7 @@ function Home() {
     return (
         <div>
             {isLoggedIn
-                ? <Inbox />
+                ? <InboxPage />
                 : <Welcome />
             }
         </div>
