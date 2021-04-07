@@ -135,7 +135,7 @@ function SentContent() {
                             <StyledTableRow key={mail.name}>
                                 <StyledTableCell component="th" scope="row">
                                     <Link
-                                        to={"view/" + mail.id}
+                                        to={"view/" + mail.mailId}
                                         className={classes.mailLink}
                                         align="left"
                                     >

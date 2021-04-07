@@ -7,6 +7,7 @@ import Register from "./pages/Registration";
 import Login from "./pages/Login";
 import Compose from "./pages/Compose";
 import SentPage from "./pages/SentPage";
+import MailDetail from "./pages/MailDetail";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                 <Route exact path="/register" children={<Register />} />
                 <Route exact path="/login" children={<Login />} />
                 <Route exact path="/compose" children={<Compose />} />
+                <Route exact path="/view/:id" children={<MailDetail />} />
             </Router>
         </div>
     );
