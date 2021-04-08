@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
+import emptyInbox from "../assets/nomail.png";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -104,20 +105,19 @@ function InboxContent() {
         return (
             <main className={classes.content}>
                 <div className={classes.toolbar}/>
-                <div className={classes.load}>
-                    <Typography
-                        className={classes.title}
-                        align="center"
-                        gutterBottom
-                        variant="h4"
-                        component="h3"
-                    >
-                        Your mails are loading...
-                    </Typography>
-                </div>
+                <TableContainer className={classes.table} component={Paper}>
+                    <Table aria-label="customized table">
+                        <TableHead className={classes.tableHead}>
+                            <TableRow className={classes.tableHead}>
+                                <StyledTableCell c>Your mails are loading...&nbsp;</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                    </Table>
+                </TableContainer>
             </main>
         );
-    return (
+
+    return mails.length <= 0 ?  <img src={emptyInbox} alt="" width="600px" /> :
         <main className={classes.content}>
             <div className={classes.toolbar}/>
             <TableContainer className={classes.table} component={Paper}>
@@ -151,7 +151,6 @@ function InboxContent() {
                 </Table>
             </TableContainer>
         </main>
-    );
 }
 
 export default InboxContent;

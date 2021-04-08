@@ -75,6 +75,7 @@ export default function MailDetail() {
                     spinnerColor={"#333"}
                     spinnerWidth={2}
                     visible={true}
+                    color={'#D31D00'}
                 />
             </div>
         );

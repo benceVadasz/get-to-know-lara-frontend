@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import {Link} from "react-router-dom";
+import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -83,6 +83,7 @@ function SentContent() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
         axios
             .get(`${BASE_URL}/sent`, {
                 headers: {
@@ -100,34 +101,32 @@ function SentContent() {
             });
         // eslint-disable-next-line
     }, []);
-    // if (loading)
-    //     return (
-    //         <main className={classes.content}>
-    //             <div className={classes.toolbar}/>
-    //             <div className={classes.load}>
-    //                 <Typography
-    //                     className={classes.title}
-    //                     align="center"
-    //                     gutterBottom
-    //                     variant="h4"
-    //                     component="h3"
-    //                 >
-    //                     Your mails are loading...
-    //                 </Typography>
-    //             </div>
-    //         </main>
-    //     );
+    if (loading)
+        return (
+            <main className={classes.content}>
+                <div className={classes.toolbar}/>
+                <TableContainer className={classes.table} component={Paper}>
+                    <Table aria-label="customized table">
+                        <TableHead className={classes.tableHead}>
+                            <TableRow className={classes.tableHead}>
+                                <StyledTableCell c>Your mails are loading...&nbsp;</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                    </Table>
+                </TableContainer>
+            </main>
+        );
     return (
         <main className={classes.content}>
             <div className={classes.toolbar}/>
             <TableContainer className={classes.table} component={Paper}>
-                <Table  aria-label="customized table">
+                <Table aria-label="customized table">
                     <TableHead className={classes.tableHead}>
                         <TableRow className={classes.tableHead}>
                             <StyledTableCell c>Subject&nbsp;</StyledTableCell>
                             <StyledTableCell align="right">To&nbsp;</StyledTableCell>
                             <StyledTableCell align="right">Sent at&nbsp;</StyledTableCell>
-                            <StyledTableCell className={classes.last}  align="right">Read&nbsp;</StyledTableCell>
+                            <StyledTableCell className={classes.last} align="right">Read&nbsp;</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
