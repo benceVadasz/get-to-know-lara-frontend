@@ -49,6 +49,12 @@ const useStyles = makeStyles((theme) => ({
     last: {
         marginRight: 50
     },
+    open: {
+        color: '#D31D00'
+    },
+    closed: {
+        color: '#349AF0'
+    },
     mailLink: {
         cursor: 'pointer',
         textDecoration: "none",
@@ -143,7 +149,10 @@ function SentContent() {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{mail.name}</StyledTableCell>
                                 <StyledTableCell align="right">{mail.sent}</StyledTableCell>
-                                <StyledTableCell align="right">{mail.read}</StyledTableCell>
+                                <StyledTableCell align="right">{!mail.is_read ?
+                                    <i className={`far fa-envelope-open fa-lg  ${classes.open}`}></i> :
+                                    <i className={`far fa-envelope fa-lg  ${classes.closed}`}></i>}
+                                </StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>

@@ -144,7 +144,9 @@ function InboxContent() {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{mail.name}</StyledTableCell>
                                 <StyledTableCell align="right">{mail.sent}</StyledTableCell>
-                                <StyledTableCell align="right">{mail.read}</StyledTableCell>
+                                <StyledTableCell align="right">{!mail.read ?
+                                    <i id="dot" class="fa fa-circle" aria-hidden="true"></i> : null}
+                                </StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
