@@ -2,9 +2,10 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom";
 import {withStyles, makeStyles} from '@material-ui/core/styles';
-import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
+import emptySent from "../assets/emptySent.png";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import emptyInbox from "../assets/emptyInbox.png";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -48,12 +49,6 @@ const useStyles = makeStyles((theme) => ({
     },
     last: {
         marginRight: 50
-    },
-    open: {
-        color: '#D31D00'
-    },
-    closed: {
-        color: '#349AF0'
     },
     mailLink: {
         cursor: 'pointer',
@@ -122,7 +117,7 @@ function SentContent() {
                 </TableContainer>
             </main>
         );
-    return (
+    return mails.length <= 0 ? <img src={emptySent} alt="" width="600px"/> :
         <main className={classes.content}>
             <div className={classes.toolbar}/>
             <TableContainer className={classes.table} component={Paper}>
@@ -132,7 +127,6 @@ function SentContent() {
                             <StyledTableCell c>Subject&nbsp;</StyledTableCell>
                             <StyledTableCell align="right">To&nbsp;</StyledTableCell>
                             <StyledTableCell align="right">Sent at&nbsp;</StyledTableCell>
-                            <StyledTableCell className={classes.last} align="right">Read&nbsp;</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -149,17 +143,12 @@ function SentContent() {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{mail.name}</StyledTableCell>
                                 <StyledTableCell align="right">{mail.sent}</StyledTableCell>
-                                <StyledTableCell align="right">{!mail.is_read ?
-                                    <i className={`far fa-envelope-open fa-lg  ${classes.open}`}></i> :
-                                    <i className={`far fa-envelope fa-lg  ${classes.closed}`}></i>}
-                                </StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
         </main>
-    );
 }
 
 export default SentContent;

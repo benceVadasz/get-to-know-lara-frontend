@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
-import emptyInbox from "../assets/nomail.png";
+import emptyInbox from "../assets/emptyInbox.png";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 
 const drawerWidth = 240;
@@ -54,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         textDecoration: "none",
         border: "none",
+    },
+    open: {
+        color: '#D31D00'
+    },
+    closed: {
+        color: '#349AF0'
     },
 }));
 const StyledTableCell = withStyles((theme) => ({
@@ -144,8 +150,9 @@ function InboxContent() {
                                 </StyledTableCell>
                                 <StyledTableCell align="right">{mail.name}</StyledTableCell>
                                 <StyledTableCell align="right">{mail.sent}</StyledTableCell>
-                                <StyledTableCell align="right">{!mail.read ?
-                                    <i id="dot" class="fa fa-circle" aria-hidden="true"></i> : null}
+                                <StyledTableCell align="right">{!mail.is_read ?
+                                    <i className={`far fa-envelope fa-lg  ${classes.closed}`}></i> :
+                                    <i className={`far fa-envelope-open fa-lg  ${classes.open}`}></i>}
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}
