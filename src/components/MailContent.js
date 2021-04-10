@@ -8,7 +8,7 @@ import Account from '@material-ui/icons/AccountCircle';
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {BASE_URL} from '../constants';
-import {Grid, Paper, TextField} from "@material-ui/core";
+import {Grid, Paper} from "@material-ui/core";
 
 export default function MailDetail() {
     const token = sessionStorage.getItem("token");
