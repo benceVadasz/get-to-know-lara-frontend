@@ -27,6 +27,12 @@ html {
   }
 }
 
+.empty-img {
+  position: absolute;
+  top: 50%; right: 50%;
+  transform: translate(50%,-50%);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

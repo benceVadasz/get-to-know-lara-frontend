@@ -58,29 +58,25 @@ function Compose() {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const submit = (e) => {
-        if (message.length > 255) {
-            alert("message cannot be longer than 255 characters");
-        } else {
-            setLoading(true);
-            e.preventDefault();
-            return axios({
-                method: "post",
-                url:
-                    `${BASE_URL}/compose`,
+        setLoading(true);
+        e.preventDefault();
+        return axios({
+            method: "post",
+            url:
+                `${BASE_URL}/compose`,
 
-                headers: {Authorization: "Bearer " + token},
-                params: {email, subject, message},
+            headers: {Authorization: "Bearer " + token},
+            params: {email, subject, message},
+        })
+            .then((response) => {
+                setLoading(false);
+                console.log(response);
+                window.location.href = "/";
             })
-                .then((response) => {
-                    setLoading(false);
-                    console.log(response);
-                    window.location.href = "/";
-                })
-                .catch(function (error) {
-                    alert('Email not found')
-                    window.location.href = "/compose";
-                });
-        }
+            .catch(function (error) {
+                alert('Email not found')
+                window.location.href = "/compose";
+            });
     };
 
     const someFieldHasText = () => {
@@ -159,21 +155,21 @@ function Compose() {
                         />
                         <div style={buttonWrapper}>
 
-                        <Button
-                            style={button}
-                            type="submit"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            color="inherit"
-                        >
-                            <SendIcon/>
-                        </Button>
+                            <Button
+                                style={button}
+                                type="submit"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                color="inherit"
+                            >
+                                <SendIcon/>
+                            </Button>
                             <Button
                                 style={button}
                                 aria-haspopup="true"
                                 color="inherit"
-                                onClick={ someFieldHasText() ? () => setIsModalOpen(true): () => window.location.href='/inbox'}
+                                onClick={someFieldHasText() ? () => setIsModalOpen(true) : () => window.location.href = '/inbox'}
                             >
                                 Cancel
                             </Button>
@@ -181,7 +177,7 @@ function Compose() {
                     </form>
                 </Paper>
             </Grid>
-            <DraftModal open={isModalOpen} onClose={() => setIsModalOpen(false)} onDraftSave={ saveDraft }/>
+            <DraftModal open={isModalOpen} onClose={() => setIsModalOpen(false)} onDraftSave={saveDraft}/>
         </div>
     );
 }

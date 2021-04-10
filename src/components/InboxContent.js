@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Typography from "@material-ui/core/Typography";
 import {BASE_URL} from '../constants';
 import emptyInbox from "../assets/emptyInbox.png";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
@@ -123,7 +122,7 @@ function InboxContent() {
             </main>
         );
 
-    return mails.length <= 0 ?  <img src={emptyInbox} alt="" width="600px" /> :
+    return mails.length <= 0 ?  <img src={emptyInbox} className={'empty-img'} alt="" width="600px" /> :
         <main className={classes.content}>
             <div className={classes.toolbar}/>
             <TableContainer className={classes.table} component={Paper}>

@@ -5,7 +5,6 @@ import {withStyles, makeStyles} from '@material-ui/core/styles';
 import {BASE_URL} from '../constants';
 import emptySent from "../assets/emptySent.png";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
-import emptyInbox from "../assets/emptyInbox.png";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -117,7 +116,7 @@ function SentContent() {
                 </TableContainer>
             </main>
         );
-    return mails.length <= 0 ? <img src={emptySent} alt="" width="600px"/> :
+    return mails.length <= 0 ? <img src={emptySent} className={'empty-img'} alt="" width="600px"/> :
         <main className={classes.content}>
             <div className={classes.toolbar}/>
             <TableContainer className={classes.table} component={Paper}>
