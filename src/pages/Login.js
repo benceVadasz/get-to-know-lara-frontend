@@ -42,10 +42,12 @@ function Login() {
             .then((response) => {
                 setLoading(false);
                 sessionStorage.setItem("token", response.data.token);
+                sessionStorage.setItem("email", email);
                 window.location.href = "/";
             })
             .catch(function (error) {
                 alert(error);
+                window.location.href = "/";
             });
 
     };
