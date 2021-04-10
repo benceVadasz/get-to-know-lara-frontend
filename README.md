@@ -1,6 +1,6 @@
 # Get to Know Lara
 
-This Project is the frontend part of a full-stack mail service application
+This Project is the frontend part of a full-stack mail service application.  
 Backend is written in Laravel, please find the link to the repository here:
 https://github.com/vadaszbence/get-to-know-lara-backend
 
