@@ -69,12 +69,17 @@ export default function MailDetail() {
         },
         time: {
             color: '#C4C4C4'
+        },
+        to: {
+            marginRight: 10
         }
     });
     const classes = useStyles();
     let {id} = useParams();
     console.log(id)
     const [mailData, setMail] = useState([]);
+    const [receiverName, setReceiverName] = useState([]);
+    const [receiverMail, setReceiverMail] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -94,6 +99,8 @@ export default function MailDetail() {
             .then((res) => {
                 setLoading(false);
                 setMail(res.data.mail[0]);
+                setReceiverName(res.data.receiverName);
+                setReceiverMail(res.data.receiverMail);
             });
     }, [id]);
 
@@ -140,6 +147,7 @@ export default function MailDetail() {
                                 {mailData.sent}
                             </Typography>
                         </div>
+                        { mailData.email !== sessionStorage.getItem('email') ?
                         <div className={classes.horizontalBox}>
                             <Account/>
                             <Typography variant="h5" className={classes.sender}>
@@ -148,7 +156,20 @@ export default function MailDetail() {
                             <Typography variant="h6" className={classes.senderMail}>
                                 {'< ' + mailData.email + ' >'}
                             </Typography>
-                        </div>
+                        </div> :
+                            <div className={classes.horizontalBox}>
+                                <Typography className={classes.to}>
+                                    To:
+                                </Typography>
+                                <Account/>
+                                <Typography variant="h5" className={classes.sender}>
+                                    {receiverName}
+                                </Typography>
+                                <Typography variant="h6" className={classes.senderMail}>
+                                    {'< ' + receiverMail + ' >'}
+                                </Typography>
+                            </div>
+                            }
                         <Typography className={classes.message}>
                             {mailData.message}
                         </Typography>

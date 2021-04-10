@@ -10,6 +10,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
 
 const drawerWidth = 240;
 
@@ -61,6 +63,22 @@ function InboxSideBar() {
         setMobileOpen(!mobileOpen);
     };
 
+    const renderSwitch = (text) => {
+        switch(text) {
+            case 'Inbox':
+                return <InboxIcon/>;
+            case 'Sent':
+                return <MailIcon/>;
+            case 'Send email':
+                return <SendIcon/>;
+            case 'Drafts':
+                return <DraftsIcon/>;
+
+
+        }
+    }
+
+
     const drawer = (
         <div>
             <div className={classes.toolbar}/>
@@ -68,7 +86,7 @@ function InboxSideBar() {
             <List>
                 {['Inbox', 'Sent', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon className={classes.button} >{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                        <ListItemIcon className={classes.button}>{renderSwitch(text)}</ListItemIcon>
                         <Button className={classes.button} component={Link} to={(text === 'Send email') ? "/compose" : "/" + text.toLowerCase()}
                                 color="inherit">
                             {text}
