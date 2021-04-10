@@ -14,6 +14,11 @@ https://github.com/vadaszbence/get-to-know-lara-backend
 6. Save mails as drafts
 7. Reply to mails
 
+## External technologies used:
+
+1. Material-UI for prebuilt styles: https://material-ui.com/
+2. Axios library for API fetch: https://github.com/axios/axios 
+
 ## Prerequisites
 
 ### Install Node JS
