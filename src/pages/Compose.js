@@ -54,8 +54,10 @@ function Compose() {
     const [email, setEmail] = useState("");
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [messageError, setMessageError] = useState("");
     const [loading, setLoading] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     const submit = (e) => {
         setLoading(true);
@@ -81,6 +83,12 @@ function Compose() {
 
     const someFieldHasText = () => {
         return (email !== "" || subject !== "" || message !== "");
+    }
+
+    const onTextChange = (e) => {
+        e.target.value.length > 255 ? setMessageError('Message cannot be longer than 255 chars') :
+        setMessageError('');
+        setMessage(e.target.value);
     }
 
     const saveDraft = () => {
@@ -145,13 +153,15 @@ function Compose() {
                         <TextField
                             fullWidth
                             style={messageStyle}
-                            onChange={(e) => setMessage(e.target.value)}
+                            onChange={onTextChange}
                             label="Message"
                             type="text"
                             name="Message"
                             placeholder="Message..."
                             multiline
                             rows={5}
+                            error={messageError !== ""}
+                            helperText={messageError === "" ? '' : messageError}
                         />
                         <div style={buttonWrapper}>
 
